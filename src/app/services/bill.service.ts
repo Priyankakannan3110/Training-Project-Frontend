@@ -11,8 +11,8 @@ export class BillService {
 
   constructor(private httpClient: HttpClient) {}
 
-  generateReport(data: any) {
-    return this.httpClient.post(this.url + '/bill/generateReport/', data, {
+  generateReport(data: any): Observable<any> {
+    return this.httpClient.post(this.url + '/bill/generateReport', data, {
       headers: new HttpHeaders().set('Content-Type', 'application/json'),
     });
   }

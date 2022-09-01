@@ -74,19 +74,12 @@
     <form [formGroup]="manageOrderForm">
         <div fxFlex fxLayout="column">
             <div fxLayout="row wrap">
-                <!-- <mat-form-field appearence="fill" fxFlex>
+
+                <mat-form-field appearence="fill" fxFlex>
                     <mat-label>Category</mat-label>
                     <mat-select formControlName="category" (selectionChange)="getProductsByCategory($event.value)">
                         <mat-option *ngFor="let category of categorys" [value]="category">
                             {{category.name}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field> -->
-                <mat-form-field appearence="fill" fxFlex>
-                    <mat-label>Category</mat-label>
-                    <mat-select formControlName="category">
-                        <mat-option *ngFor="let category of categorys" [value]="category">
-                            {{ category.name }}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -94,9 +87,8 @@
                 <mat-form-field appearence="fill" fxFlex>
                     <mat-label>Product</mat-label>
                     <mat-select formControlName="product" (selectionChange)="getProductDetails($event.value)">
-                        <mat-option *ngFor="let product of products" [value]="product">{{
-                            product.name
-                            }}</mat-option>
+                        <mat-option *ngFor="let product of products" [value]="product">
+                            {{product.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>
 

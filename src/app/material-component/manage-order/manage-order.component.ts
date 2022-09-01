@@ -61,6 +61,7 @@ export class ManageOrderComponent implements OnInit {
       price: [null, [Validators.required]],
       total: [0, [Validators.required]],
     });
+    this.getCategory();
   }
 
   getCategory() {
@@ -174,7 +175,7 @@ export class ManageOrderComponent implements OnInit {
       (e: { id: number }) => e.id == formData.product.id
     );
     if (productName === undefined) {
-      this.totalAmount = this.totalAmount + formData.totalAmount;
+      this.totalAmount = this.totalAmount + formData.total;
       this.dataSource.push({
         id: formData.product.id,
         name: formData.product.name,
@@ -185,7 +186,7 @@ export class ManageOrderComponent implements OnInit {
       });
       this.dataSource = [...this.dataSource];
       this.snackbarService.openSnackBar(
-        GlobalConstants.productExistError,
+        GlobalConstants.productAdded,
         GlobalConstants.error
       );
     } else {
@@ -212,10 +213,12 @@ export class ManageOrderComponent implements OnInit {
       totalAmount: this.totalAmount,
       productDetails: JSON.stringify(this.dataSource),
     };
+    console.log(data);
     this.billService.generateReport(data).subscribe(
       (reaponse: any) => {
         this.downloadFile(reaponse?.uuid);
-        this.manageOrderForm.reset();
+        console.log(data);
+        // this.manageOrderForm.reset();
         this.dataSource = [];
         this.totalAmount = 0;
       },
